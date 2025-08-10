@@ -1,0 +1,17 @@
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/YourUsername/YourRepo.git
+
+if(origin already exist)
+git remote set-url origin https://github.com/YourUsername/NewRepoName.git
+
+# 5. Rename branch to 'main' (only needed if not already named 'main')
+git branch -M main
+
+git push -u origin main
+
+# 🔁 Next time, just use:
+# git add .
+# git commit -m "Your message"
+# git push

@@ -1,0 +1,118 @@
+Logical thinking 
+{
+Sudoku
+Chess
+}
+
+Communication 
+{
+	
+	Daily 5 words (Vocab)
+	
+	SAT
+	{
+		Reading  Comprehension
+		MCQ’s 
+		---(Ending point when you can score 550 in SAT reading writing section)---
+	}
+
+	IELTS
+	{
+		Writing test (End when you get band 8.5)
+		Listening Tests online (End when you get band 8.5)
+		Speaking tests (End when you get band 8.5)
+	}
+}
+
+Programming New Concepts 
+{
+	Sorting Algorithms 
+	{
+		
+		i) Insersion sort
+		ii) Quick sort		
+		iii) Merge sort
+		iv) Heap sort
+	}
+
+1) Exception Handling
+2) Templates
+3) Linked Lists
+4) Stack and Ques
+5) Recursion
+6) Binary trees
+
+	Searching Algorithms  
+	{
+		1) Jump Search
+		2) Exponential Search
+		3) Interpolation Search
+	}  
+}
+
+
+Practical Math {
+	
+	Business Education 
+		{		
+			Apply all concepts of derivatives and others to business world 
+			Applications of derivatives
+			Applications of potential functions 
+			Applications of Lagrange Multipliers
+			Maximizing/Minimizing Cost and Revenue Problems
+			Interest problems 
+			Applications of Integrals 
+		}
+}
+
+
+C++ projects {
+
+	Assignment # 2 
+		{
+			Classic including Graphics and Graphs
+			Multiple file project 
+		}
+
+	Game 
+		{
+				Self made game with high level graphics
+				(Needs first to understand SFML)
+		}
+}
+
+Web Development {
+
+	2.CSS
+		{
+			Full FCC course
+		}
+}
+
+
+===Done===
+Professional skills 
+{
+	GitHub
+	{
+		Join vsCode with GitHub
+		Upload all codes on GitHub	
+	}
+}
+
+Web Development
+{
+	1. HTML Full course
+}
+
+
+==== Resources for Web Dev ====
+MDN Web Docs (by Mozilla) – best documentation
+
+freeCodeCamp – full interactive course
+
+Frontend Mentor – real design challenges
+
+The Odin Project – full front-end + back-end roadmap
+
+
