@@ -16,9 +16,13 @@ git push -u origin main
 # git commit -m "Your message"
 # git push
 
-/*
-To delete folder from GitHub after deleting locally
+1. To delete folder from GitHub after deleting locally
 git rm -r folder_name/
 git commit -m "Something"
 git push 
-*/
+=== Or === 
+Simply delete it locally and run the following commands to update the changes
+git add -u
+commit -m "Ah! got it"
+git push	
+
