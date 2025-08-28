@@ -1,0 +1,99 @@
+=== Curriculum ✅===
+{
+	D.S
+	   {
+	   	1. Complexities 30 mins
+	   	2. lecture 04 30 mins ✅ 
+	   }	
+	DLD
+	   {
+		1. Quiz 30 mins
+	   }
+	L.A
+	   {
+	   	1. practice stuff 1hr
+	   }
+	I.S.E 
+	   {
+	     	1. Previous questions 30 mins
+	     	2. tech terms 30 mins
+	   }
+	Psyco
+	   {
+	   	1. tech terms 30 mins
+	   } 
+	P.S
+	   {
+	   	1. Practice 30 mins
+	   	2. Assignment
+	   }
+}
+
+
+=== Reading ===
+Books
+     {
+     	The standard Bitcoin
+     				{
+     					For Ideas
+     				}
+     	The hard thing about hard things
+     				{
+     					Passion
+     				}
+     }
+     
+=== Programming Problem solving ===  
+Polymorphism
+		{
+			Lab task 
+				{
+					Clear basics and play around 
+				}
+		}
+
+Abstraction
+		{
+			Lab task 
+				{ 
+					Clear basics and play around
+				}
+		}
+
+Function Pointers
+		{
+			1. Solve problems for hands on practice from books or online resources
+		}
+
+=== Main ===
+HTML
+	{
+		Dave Gray Lecture + Project
+	}
+CSS
+	{
+		Complete 11Hrs Dave Gray lecture
+	}
+=== Mega Project ===
+Project website using HTML and CSS on FreeCodeCamp
+
+===| Study Abroad |===
+
+English
+	{
+		1. English college essay writing 
+		2. Essay writing tips 
+		3. write a college essay and check by GPT
+	}
+
+Khan Academy Reading test
+		{
+			Give 2-4 tests
+		}
+
+How to get more from Algebra book. 
+Read the book thoroughly and solve problems.
+
+
+--- Startup Course ---
+CS183F
