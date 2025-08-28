@@ -23,6 +23,6 @@ git push
 === Or === 
 Simply delete it locally and run the following commands to update the changes
 git add -u
-commit -m "Ah! got it"
+git commit -m "Ah! got it"
 git push	
 
