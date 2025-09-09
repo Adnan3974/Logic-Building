@@ -146,8 +146,9 @@ int main(){
     int target;
     cin >> target;
     list.searchByValue(target);
-    
+
     return 0;
+    cout << "Something terrible has done";
 }
 
 /*
