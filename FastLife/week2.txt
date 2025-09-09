@@ -1,0 +1,44 @@
+=== Curriculum ===
+
+D.S
+	   {
+	   	1. Complexities 30 mins ✅
+	   	2. lecture 04 30 mins ✅ 
+	   }
+I.S.E 
+	   {
+	     	1. Previous questions 30 mins ✅
+	     	2. tech terms 30 mins ✅
+	   }
+Psyco
+	   {
+	   	1. tech terms 30 mins ✅
+	   }
+	   Function Pointers 
+		{
+			1. Solve problems for hands on practice from books or online resources ✅
+		}
+DLD
+	   {
+		1. Quiz 30 mins ✅
+	   }
+P.S
+	   {
+	   	1. Practice 30 mins ✅
+	   	2. Assignment ✅
+	   }
+L.A
+	   {
+	   	1. practice stuff 1hr ✅
+	   }
+=== Main ===
+HTML
+	{
+		Dave Gray Lecture + Project ✅
+	}
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+								Targets
+=== Books ===
+     	The standard Bitcoin
+
+=== Programming ===  
+	Polymorphism
+	Abstraction
+
+=== Main ===
+CSS
+Courses{
+Wahidullah Karimi
+}
+
+=== Web Project ===
+	website on FreeCodeCamp
+
+=== English ===
+	1. English college essay writing 
+	2. Essay writing tips 
+	3. write a college essay and check by AI
+	
+=== Khan Academy ===
+	3-4 Tests Reading tests
+
+Cyber Security CS50{
+David Malan 3 lectures
+}
+

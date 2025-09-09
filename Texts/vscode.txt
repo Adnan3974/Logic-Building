@@ -1,2 +1,0 @@
-(Zen Mode) from the explorer to remove distractions
-select any word and type cmd+F to replace
