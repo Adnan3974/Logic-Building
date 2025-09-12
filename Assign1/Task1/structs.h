@@ -13,10 +13,9 @@ Items(){
     quantity = 0;
 }
 
-friend istream &operator>>(istream &is,Items&);
-void changeItemName(Order& order);
-void changeItemPrice(Order& order);
-void addQuantity(Order& order);
+void changeItemName();
+void changeItemPrice();
+void addQuantity();
 void printItemDetails();
 };
 
@@ -33,8 +32,8 @@ struct Inventory{
 
     ~Inventory();
     void resize();
-    void addItem(const Items&);
-    void removeItem(const Items&);
+    void addItem();
+    void removeItem();
     void printInventory();
 };
 
@@ -44,7 +43,7 @@ struct Order{
     int itemsCount=0;
     int itemsCapacity;
     int *quantities; 
-    int quantityCount;
+    int quantityCount=0;
     int quantityCapacity;
     double basePrice=0;
     double tax;
@@ -59,17 +58,23 @@ struct Order{
         items = new Items[itemsCapacity];
         quantities = new int[quantityCapacity];
     }
+Order::~Order() {
+    delete[] items;
+    delete[] quantities;
+}
 
     void resizeItems();
     void resizeQuantity();
-    void addItemInOrder(const Items&);
-    void removeItemFromOrder(const Items&);
+    void addItemInOrder();
+    void removeItemFromOrder();
     void printOrderDetails();
-    void calculateBill(); 
+    //void addMoreItems(Items*&);
+    void calculateBill();
 };
 //orders history
 struct Node{
-    Order *orders; //Preserve history of orders
+    int totalOrders;
+    Order *orders; // Preserve history of orders
     int ordersCapacity;
     int ordersCount;
     Order *pendingOrders;
@@ -88,6 +93,8 @@ struct Node{
     Node* next;
 
     Node(){
+        next=NULL;
+        totalOrders = 0;
         ordersCapacity = 40;
         ordersCount = 0;
         orders = new Order[ordersCapacity];
@@ -100,30 +107,50 @@ struct Node{
         quantities = new int[quantitiesCapacity];
     }
 
+    ~Node() {
+        delete[] orders;
+        delete[] pendingOrders;
+        delete[] items;
+        delete[] quantities;
+    }
+
     void addHistory(const Order&);
     void resizeNodeItems();
     void resizeQuantities();
-    void resizeOrders();
-    void resizePendingOrders();
+    void resizeOrdersCapacity();
+    void resizePendingOrdersCapacity();
 };
 
 class List{
+    Node*  order;
     Node *head;
     public:
     List(){
-        head = NULL;
+        head = nullptr;
+        order=nullptr;
     }
-    void addOrder(Items&, Order&);
+    void addOrder();
     void removeOrder();
     void printOrdersHistory();
 };
 
 struct Store{
     Inventory inventory;
-    Order *orders;//orders history
+    Order *pendingOrders;//pending orders history
+    Order *ordersHistory;
+    Node node;
     double totalRevenue;
     void createOrder();
     void removeOrder();
     void printSortedOrders();//ascending sorting by price
     void calculateRevenue();
+    Store(){
+        pendingOrders = new Order[node.pendingOrdersCapacity];
+        ordersHistory = new Order[node.ordersCapacity];
+        totalRevenue = 0;
+    }
+    ~Store() {
+        delete[] pendingOrders;
+        delete[] ordersHistory;
+    }
 };
