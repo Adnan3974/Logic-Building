@@ -12,7 +12,6 @@ Node* top;
 Node* head;
 public:
 Stack(){
-	head = NULL;
 	top = NULL;
 }
 bool isEmpty(){

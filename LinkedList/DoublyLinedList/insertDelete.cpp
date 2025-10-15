@@ -5,7 +5,7 @@ using namespace std;
 2. Insert at end.
 3. Insert after given value.
 4. Delete at start.
-5. Delete at end.
+5. Delete at end. 
 6. Delete given value.
 */
 class Node{
@@ -76,7 +76,6 @@ class List{
     else
         tail = insert; // inserted at end → update tail
     }
-
     void deleteAtStart(){
         if(head==NULL && tail==NULL){
             cout<<"List is empty\n";

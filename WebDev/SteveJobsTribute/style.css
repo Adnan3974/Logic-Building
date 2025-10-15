@@ -1,0 +1,10 @@
+body{
+    color: azure;
+    background-image: url("back1.jpg");
+}
+#h1{
+    text-align: center;
+}
+#h1 img{
+    border-radius: 50%;
+}

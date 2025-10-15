@@ -2,6 +2,7 @@
 #include<string>
 #include "structs.h"
 using namespace std;
+struct Inventory;
 void Items::changeItemName(){ 
     cout << "Enter the new name: ";
     string n;
@@ -156,6 +157,88 @@ Inventory::~Inventory(){
     delete[] items;
 }
 
+void Order::removeItemFromOrder(){
+    if (inventory == nullptr) {
+        cout << "Error: Order not properly initialized with inventory!\n";
+        return;
+    }
+
+    cout << "Enter item's barcode: ";
+    int b;
+    cin >> b;
+    bool status = false;
+    
+    for (int i = 0; i < itemsCount; ++i){
+        if (items[i].barcode == b){ 
+            // Return item to inventory
+            for(int j = 0; j < inventory->count; ++j){
+                if(inventory->items[j].barcode == b){
+                    inventory->items[j].quantity += quantities[i];
+                    break;
+                }
+            }
+          
+            for (int j = i; j < itemsCount - 1; ++j){
+                items[j] = items[j + 1];
+                quantities[j] = quantities[j + 1];
+            }
+            itemsCount--;
+            status = true;
+            cout << "Item removed from order successfully.\n";
+            break;
+        }
+    }
+    if(!status){
+        cout << "The item doesn't belong to your order!\n";
+    }
+}
+
+
+Order::Order(Inventory* inv) : inventory(inv) {
+    itemsCapacity = 10;
+    quantityCapacity = 10;
+    itemsCount = 0;
+    quantityCount = 0;
+    tax = 0;
+    basePrice = 0;
+    totalPrice = 0;
+    items = new Items[itemsCapacity];
+    quantities = new int[quantityCapacity];
+    status = "Pending";
+    paymentMethod = "";
+}
+
+void Order::addItemInOrder(){
+    if (inventory == nullptr) {
+        cout << "Error: Order not properly initialized with inventory!\n";
+        return;
+    }
+
+    if (itemsCount >= itemsCapacity){
+        resizeItems();
+    }    
+    cout << "Enter item name: ";
+    string itemName;
+    cin.ignore();
+    getline(cin, itemName);
+    bool status = false;
+    
+    for(int i = 0; i < inventory->count; ++i){
+        if(inventory->items[i].name == itemName && inventory->items[i].quantity > 0){
+            items[itemsCount] = inventory->items[i];
+            quantities[itemsCount] = 1; 
+            inventory->items[i].quantity--; 
+            itemsCount++;
+            status = true;
+            cout << "Item added to order successfully!\n";
+            break;
+        }
+    }
+    if(!status){
+        cout << "Sorry! Item doesn't exist in the inventory or is out of stock!\n";
+    }
+}
+
 void Order::resizeItems(){
     itemsCapacity*=2;
     Items *moreItems = new Items[itemsCapacity];
@@ -174,54 +257,6 @@ void Order::resizeQuantity(){
         }
         delete[] quantities;
         quantities = newQuantArray;
-}
-//-------BUGS------//
-void Order::addItemInOrder(){
-    if (itemsCount >= itemsCapacity){
-        resizeItems();
-    }    
-    cout << "Enter item name: ";
-    string b;
-    cin.ignore();
-    getline(cin, b);
-    bool status = false;
-    for(int i = 0; i < itemsCapacity; ++i){
-        if(items[i].name == b && items[i].quantity > 0){
-            items[itemsCount] = items[i];
-            quantities[itemsCount] = 1; 
-            items[i].quantity--; 
-            itemsCount++;
-            status = true;
-            cout << "Item added to order successfully!\n";
-            break;
-        }
-    }
-    if(!status){
-        cout << "Sorry! Item doesn't exist in the inventory or is out of stock!\n";
-    }
-}
-
-void Order::removeItemFromOrder(){
-    cout << "Enter item's barcode: ";
-    int b;
-    cin >> b;
-    bool status = false;
-    for (int i = 0; i < itemsCount; ++i){
-        if (items[i].barcode == b){ 
-            items[i].quantity++; 
-            for (int j = i; j < itemsCount - 1; ++j){
-                items[j] = items[j + 1];
-                quantities[j] = quantities[j + 1];
-            }
-            itemsCount--;
-            status = true;
-            cout << "Item removed from order successfully.\n";
-            break;
-        }
-    }
-    if(!status){
-        cout << "The item doesn't belong to your order!\n";
-    }
 }
 
 void Order::printOrderDetails(){
@@ -357,6 +392,9 @@ void Node::resizeQuantities(){
 }
 
 void List::addOrder(){
+    if(head==NULL){
+        head = new Node();
+    }
 for (int i = 0; i < head->ordersCount; ++i) {
         if (head->orders[i].status == "Completed") {
             head->addHistory(head->orders[i]);
@@ -382,64 +420,100 @@ for (int i = 0; i < head->ordersCount; ++i) {
     }
     //Only displaying completed orders !Pendings
     void List::printOrdersHistory(){
-        if(head==NULL){
-            cout<<"No Orders Exist Yet.\n";
-            return;
-        }
-        Node* temp=head;
-        
-        while(temp!=NULL){
-            for (int i = 0; i < temp->ordersCount; ++i) {
-            // Print only completed orders
-            if (temp->orders[i].status == "Completed") {
-                cout << "Order ID: " << temp->orders[i].OrderID << "\n";
-                for (int j = 0; j < temp->orders[i].itemsCount; ++j) {
+    if(head == NULL){
+        cout<<"No Orders Exist Yet.\n";
+        return;
+    }
+    
+    Node* temp = head;
+    while(temp != NULL){
+        for (int i = 0; i < temp->ordersCount; ++i) {
+            if(temp->orders[i].items != nullptr && temp->orders[i].itemsCount > 0){
+                for(int j = 0; j < temp->orders[i].itemsCount; ++j){
                     cout << "Item Name: " << temp->orders[i].items[j].name << "\n"
                          << "Barcode: " << temp->orders[i].items[j].barcode << "\n"
                          << "Price: " << temp->orders[i].items[j].price << "\n"
-                         << "Quantity: " << temp->orders[i].items[j].quantity << "\n";
+                         << "Quantity: " << temp->orders[i].quantities[j] << "\n"; // Use quantities array
                 }
-                cout << "Total Price: " << temp->orders[i].totalPrice << "\n";
-                cout << "Status: " << temp->orders[i].status << "\n\n";
+                cout << "Total Price: " << temp->orders[i].totalPrice << "\n"
+                     << "Status: " << temp->orders[i].status << "\n";
             }
         }
-            temp=temp->next;
+        temp = temp->next;
+    }
+}
+
+
+void Store::calculateRevenue(){
+    for(int i = 0; i < node.ordersCount; ++i){
+        if(node.orders[i].status == "Completed"){
+            totalRevenue += node.orders[i].totalPrice;
         }
     }
+    cout << "Total Revenue: $" << totalRevenue << "\n";
+}
 
-    void Store::calculateRevenue(){
-        for (int i = 2; i <= node.orders->OrderID; i += 2){
-            totalRevenue += node.orders->totalPrice;
+void Store::createOrder(){
+    if (node.ordersCount >= node.ordersCapacity) {
+        node.resizeOrdersCapacity();
+    }
+    for (int i = 0; i < node.pendingOrdersCount; i++) {
+        if (node.pendingOrders[i].status == "Completed") {
+            node.orders[node.ordersCount] = node.pendingOrders[i];
+            node.ordersCount++;
+            
+            // Remove from pending orders
+            for (int j = i; j < node.pendingOrdersCount - 1; j++) {
+                node.pendingOrders[j] = node.pendingOrders[j + 1];
+            }
+            node.pendingOrdersCount--;
+            i--; // Adjust index after removal
+            
+            cout << "Order added to history successfully.\n";
         }
     }
+}
 
-    void Store::createOrder(){
-        List list;
-        list.addOrder();
+void Store::removeOrder(){
+    cout << "Enter the order index to remove (0 to " << node.ordersCount - 1 << "): ";
+    int index;
+    cin >> index;
+    
+    if (index < 0 || index >= node.ordersCount) {
+        cout << "Invalid order index!\n";
+        return;
     }
-
-    void Store::removeOrder(){
-        List list;
-        list.removeOrder();
+    for (int i = index; i < node.ordersCount - 1; i++) {
+        node.orders[i] = node.orders[i + 1];
     }
+    node.ordersCount--;
+    
+    cout << "Order removed from history successfully.\n";
+}
 
-    void Store::printSortedOrders(){
-        Node *node;
-        for(int i=4; i<node->orders->OrderID-2; i+=2){
-            for(int j=2; j<node->orders->OrderID; j+=2){
-                if(node->orders[i].basePrice < node->orders[j].basePrice){
-                    swap(node->orders[i].basePrice , node->orders[j].basePrice);
-                }
+void Store::printSortedOrders(){
+    if(node.ordersCount == 0){
+        cout << "No orders to sort.\n";
+        return;
+    }
+    Order* tempOrders = new Order[node.ordersCount];
+    for(int i = 0; i < node.ordersCount; ++i){
+        tempOrders[i] = node.orders[i];
+    }
+    //sorting algorithm
+    for(int i = 0; i < node.ordersCount-1; ++i){
+        for(int j = i+1; j < node.ordersCount; ++j){    
+            if(tempOrders[i].basePrice > tempOrders[j].basePrice){
+                swap(tempOrders[i], tempOrders[j]);
             }
         }
-        
-        for (int i = 2; i < node->totalOrders; i+=2){
-            if(node->orders->OrderID==0){
-                continue;
-            }
-            cout << node->orders[i].items[i].name << "\n";
-            cout << node->orders[i].items[i].barcode << "\n";
-            cout << node->orders[i].items[i].price << "\n";
-            cout << node->orders[i].items[i].quantity << "\n";
+    }
+
+    for (int i = 0; i < node.ordersCount; ++i){
+        cout << "Order " << i+1 << " Total: $" << tempOrders[i].totalPrice << "\n";
+        for (int j = 0; j < tempOrders[i].itemsCount; ++j){
+            cout << "  " << tempOrders[i].items[j].name << " x" << tempOrders[i].quantities[j] << "\n";
         }
     }
+    delete[] tempOrders;
+}

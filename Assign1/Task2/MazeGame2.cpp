@@ -267,9 +267,9 @@ public:
 
     void displayMaze() {
         cout << "\nWords puzzle:" << endl;
-        for (int j = 0; j < mazeSize; j++) {
-            cout << j << " ";
-        }
+            for (int j = 0; j < mazeSize; j++){
+                cout<<j+1<<" ";
+            }
         cout << endl;
        
         for (int i = 0; i < mazeSize; i++) {

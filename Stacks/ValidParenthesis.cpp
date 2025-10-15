@@ -73,8 +73,7 @@ public:
         return isEmptyStr();
     }
 };
-int main()
-{
+int main(){
     Stack stack;
     string str;
     cout << "Enter parenthesis to verify: ";

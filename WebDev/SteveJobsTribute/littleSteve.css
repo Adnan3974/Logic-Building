@@ -1,0 +1,13 @@
+body{
+    background-image: url("back1.jpg");
+    
+}
+
+.h1 img{
+    border-radius: 50%;
+}
+
+.h1{
+    color:rgb(248, 252, 252);
+    text-align: center;
+}

@@ -1,3 +1,5 @@
+#ifndef STRUCTS_H
+#define STRUCTS_H
 #include<string>
 using std::string;
 
@@ -31,6 +33,7 @@ struct Inventory{
     }
 
     ~Inventory();
+
     void resize();
     void addItem();
     void removeItem();
@@ -38,39 +41,40 @@ struct Inventory{
 };
 
 struct Order{
-    int OrderID;
+    Inventory* inventory;
     Items *items;
-    int itemsCount=0;
+    int itemsCount;
     int itemsCapacity;
     int *quantities; 
-    int quantityCount=0;
+    int quantityCount;
     int quantityCapacity;
-    double basePrice=0;
+    double basePrice;
     double tax;
-    double totalPrice=0;
+    double totalPrice;
     string paymentMethod; 
     string status; 
 
+    Order(Inventory* inv);
     Order(){
-        OrderID = 0;
+        inventory=nullptr;
         itemsCapacity = 10;
         quantityCapacity = 10;
+        itemsCount=0;
+        tax=0;
+        basePrice=0;
         items = new Items[itemsCapacity];
         quantities = new int[quantityCapacity];
+        status="Pending";
     }
-Order::~Order() {
-    delete[] items;
-    delete[] quantities;
-}
 
     void resizeItems();
     void resizeQuantity();
     void addItemInOrder();
     void removeItemFromOrder();
     void printOrderDetails();
-    //void addMoreItems(Items*&);
     void calculateBill();
 };
+
 //orders history
 struct Node{
     int totalOrders;
@@ -113,7 +117,7 @@ struct Node{
         delete[] items;
         delete[] quantities;
     }
-
+    
     void addHistory(const Order&);
     void resizeNodeItems();
     void resizeQuantities();
@@ -154,3 +158,5 @@ struct Store{
         delete[] ordersHistory;
     }
 };
+
+#endif
