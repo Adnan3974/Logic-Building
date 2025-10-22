@@ -33,6 +33,13 @@ class cList{
         tail->next = temp->next;
         delete temp; temp = nullptr;
     }
+/*
+1. Reversing the clist using traversal.
+2. Reversing the clist using recursion.
+*/
+    void reverse(){
+        Node* temp = tail;
+    }
     void display(){
         if (tail == NULL) return;
         Node* temp = tail->next;
@@ -44,11 +51,13 @@ class cList{
         delete temp; temp = nullptr;
     }
 };
+
 int main(){
     cList list;
     for(int i=34; i<54; i++){
         list.insertAtStart(i);
     }
     list.display();
+
     return 0;
 }

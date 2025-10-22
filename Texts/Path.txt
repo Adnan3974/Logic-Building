@@ -1,7 +1,4 @@
-                                               ==== One Year Web Dev Path ====
-
                                                    --- Month 1 (60 Hrs)---
-												<- HTML and CSS basics ->
 1)- 
 Learn HTML: Structure web pages (tags, semantic elements, forms). 
 Use freeCodeCamp (HTML5 course, ~20 hours).
@@ -15,7 +12,6 @@ Build 2–3 simple static websites (e.g., portfolio, landing page) (~10 hours).
 Resources: freeCodeCamp, W3Schools, MDN Web Docs.
 
                                                    --- Month 2 (60 Hrs)---
-												<-Deep dive into CSS->
 1)-
 Animations, transitions, preprocessors (Sass basics), 
 and frameworks like Tailwind CSS or Bootstrap (~30 hours).
@@ -29,7 +25,6 @@ Build 2 projects: A responsive portfolio site and a small business landing page 
 Resources: CSS-Tricks, GitHub Learning Lab.
 
                                                    --- Month 3 (60 Hrs)---                                                   
-												<-JavaScript Basics-> 
 1)-
 Learn JavaScript fundamentals: Variables, functions, arrays, objects, DOM manipulation, and events (~40 hours). 
 Use JavaScript.info or The Odin Project.
@@ -48,7 +43,6 @@ with basic interactivity,
 and have 5–7 small projects on GitHub.
 
                                                    --- Month 4 (60 Hrs)---
-												<- Intermediate JavaScript ->
 1)-
 Study ES6+ features: Arrow functions, destructuring, modules, promises, async/await (~30 hours).
 2)-
@@ -59,7 +53,6 @@ Build 2 projects: Weather app or movie search app using a public API (~20 hours)
 Resources: Modern JavaScript Tutorial (javascript.info), freeCodeCamp APIs section.
 
                                                    --- Month 5 (60 Hrs)---
-													<-React Basics->
 1)-													
 Learn React: Components, props, state, hooks (useState, useEffect), and JSX (~40 hours). 
 Use Scrimba’s free React course or React.dev tutorials.
@@ -69,7 +62,6 @@ Build 2 React projects: A to-do app with state management and a simple e-commerc
 Resources: React.dev, Scrimba, YouTube (Net Ninja’s React series).
 
                                                    --- Month 6 (60 Hrs)---
-												<- Advanced React & Tooling ->
 1)-
 Deepen React knowledge: Routing (React Router), 
 state management (Context API or Redux basics), 
@@ -88,7 +80,6 @@ single-page applications using React and APIs,
 with 3–5 solid projects in your portfolio.
 
                                                    --- Month 7 (60 Hrs)---
-											<- Advanced Front-End Concepts ->
 1)-
 Learn TypeScript basics for typed JavaScript (~15 hours).
 2)-
@@ -103,7 +94,6 @@ Resources: TypeScript docs, Web.dev (Google’s web performance guides).
                                                    --- Month 8 (60 Hrs)---
 
 
-											<- Portfolio & Freelance Prep ->
 1)-
 Create a professional portfolio website,
 showcasing 4–6 projects, 
@@ -118,7 +108,6 @@ Learn basic client communication and project management (~15 hours).
 Resources: Behance for portfolio inspiration, Upwork Academy.
 
                                                    --- Month 9 (60 Hrs)---
-											<- Testing & Deployment ->
 1)-
 Learn testing basics: Unit testing with Jest or Vitest for React components (~15 hours).
 2)-
@@ -138,7 +127,6 @@ you have a professional portfolio,
 1–2 paid freelance gigs, and experience deploying and testing apps.
 
                                                    --- Month 10 (60 Hrs)---
-											<- Job Prep & Networking ->
 1)-
 Practice coding interviews: Solve 50–70 LeetCode or HackerRank problems 
 (focus on arrays, strings, DOM manipulation) (~30 hours).
@@ -150,7 +138,6 @@ Apply to 10–15 entry-level front-end jobs or internships (~20 hours).
 Resources: LeetCode, Cracking the Coding Interview, X posts for job leads.
 
                                                    --- Month 11 (60 Hrs)---
-											<- Advanced Freelancing ->
 1)-
 Take on 2–3 larger freelance projects (e.g., small business websites, React dashboards) targeting $500–$1,000 each (~30 hours).
 2)-
@@ -161,7 +148,6 @@ Continue job applications (10–15 more) and practice mock interviews (~20 hours
 Resources: Upwork, Freelancer.com, LinkedIn for client outreach.
 
                                                    --- Month 12 (60 Hrs)---
-											<- Scale to $3,000/month ->
 1)-
 Secure 3–5 freelance clients at $500–$1,000 per project or 
 land a junior front-end job (average U.S. salary: $50,000–$70,000/year, or ~$4,000–$5,800/month).
