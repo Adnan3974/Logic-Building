@@ -476,19 +476,7 @@ updates.
 • runSimulation() – Repeats treatment cycles until all patients are discharged.
 */
 int main(){
-    dList doctor;
-    doctor.addDoctor();
-    doctor.addDoctor();
-    doctor.addDoctor();
-    doctor.displayForward();
-    doctor.updDoctor();
-    doctor.displayReverse();
-    doctor.delDoctor();
-    doctor.sortDoctors();
-    doctor.displayForward();
-    doctor.searchDoctor();
-    doctor.assignPatient();
-    doctor.displayForward();
+    
     return 0;
 
 }
