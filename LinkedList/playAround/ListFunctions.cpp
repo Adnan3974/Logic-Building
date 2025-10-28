@@ -28,7 +28,6 @@ class List{
         Node* newNode = new Node();
         newNode->data = value;
         if(head==NULL){
-            newNode->next=NULL;
             head = newNode;
             return;
         }

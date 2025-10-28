@@ -1,64 +1,47 @@
 #include <iostream>
 using namespace std;
-
-class Node
-{
+/*
+1->9->6->1->2->0->5->3->nullptr
+x = 3
+1->1->2->0->3->9->6->5->nullptr
+*/
+class Node{
 public:
     int data;
     Node *next;
-};
-
-Node *createNode(int val)
-{
-    Node *n = new Node();
-    n->data = val;
-    n->next = NULL;
-    return n;
-}
-
-void print(Node *head)
-{
-    while (head != NULL)
-    {
-        cout << head->data << " ";
-        head = head->next;
+    Node(){
+        next = nullptr;
     }
-}
-
-/*
-
-*/
-void getPartitionedList(Node *head, int x){
-
-if(head==NULL)
-return;
-
-if(head->next==NULL && x!=head->data){
-cout<<"Invalid X";
-return;
-}
-
-if(head->next==NULL)
-return;
-
-typedef Node* ptr;
-ptr curr=new Node();
-ptr Next=new Node();
-
-curr=head;
-while(curr!=NULL){
-if(curr->data<=x)
-continue;
-
-}
-}
-
-int main()
-{
-
+};
+class List{
+    Node* head;
+    List(){
+        head = nullptr;
+    }
+    void insertFront(int val){
+    Node* newNode = new Node();
+    newNode->data = val;
+    newNode->next = head;
+    head = newNode;
+    }
+    void partition(int x){
+        if(head == nullptr){
+            cout<<"List empty!\n"; return;
+        }
+        Node* temp = head;
+        while(temp->next != nullptr){
+            if(temp->data <= x){
+                temp = temp->next;
+            }
+            else{
+                Node* temp2 = temp;
+            }
+        }
+    }
+};
+int main(){
     int val = 0;
     cout << "Enter elements in the linked list and -999 to stop adding elements: ";
-
     Node *head = NULL;
     Node *tail = NULL;
 
