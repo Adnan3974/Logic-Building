@@ -191,8 +191,8 @@ struct Room{
     }
 };
 class cList{
-    Room* tail;
     public: 
+    Room* tail;
     cList(){
         tail = nullptr;
     }
@@ -303,12 +303,6 @@ class cList{
     }
 };
 
-/*
-sonething Patient Management System using Circular Doubly Linked List (CDLL)
-5. prioritizePatient() – Reorganize the list dynamically if a patient’s severity changes.
-8. dischargePatient() – Remove a patient once treatment is complete and free doctor/room
-links.
-*/
 struct Patient{
     int PatientID, Age, SeverityLevel, AssignedDoctorID, AssignedRoomID, TreatmentStatus;
     string name, department;
@@ -317,8 +311,8 @@ struct Patient{
     Patient(): prev(nullptr), next(nullptr){};
 };
 class dcList{
-    Patient* tail;
     public: 
+    Patient* tail;
     dcList(): tail(nullptr){};
     void addPatient(){
         Patient* newNode = new Patient();
@@ -362,6 +356,64 @@ class dcList{
         cout<<"Enter Assgned doctor ID: "; cin>>temp->AssignedDoctorID;
         cout<<"Enter Assigned room ID: "; cin>>temp->AssignedRoomID;
         cout<<"Enter Treatment Status: "; cin>>temp->TreatmentStatus;
+    }
+    void prioritizePatient(){
+        if(tail == nullptr) return;
+        cout<<"Enter ID of the intended patient to reprioritize: "; 
+        int id; cin>>id;
+        Patient* temp = tail->next;
+        do{
+            if(temp->PatientID != id){
+                temp = temp->next; 
+            }
+        }while(temp->PatientID != id && temp != tail->next);
+        if(temp == tail->next && temp->PatientID != id){
+            cout<<"Patient with this id not found"; return;
+        }
+        cout<<"Enter new Severity Level (1-5). 1 is the highest: "; cin>>temp->SeverityLevel;
+        Patient* current = tail->next;
+        do{
+            if(current->SeverityLevel > temp->SeverityLevel){
+                swap(current->PatientID, temp->PatientID);
+                swap(current->name, temp->name);
+                swap(current->Age, temp->Age);
+                swap(current->department, temp->department);
+                swap(current->SeverityLevel, temp->SeverityLevel);
+                swap(current->AssignedDoctorID, temp->AssignedDoctorID);
+                swap(current->AssignedRoomID, temp->AssignedRoomID);
+                swap(current->TreatmentStatus, temp->TreatmentStatus);
+            }
+            current = current->next;
+        }while(current != tail->next);
+    }
+    void dischargePatient(){
+        if(tail == nullptr){
+            cout<<"No patients in list!\n";
+            return;
+        }
+        cout<<"Enter Patient ID to discharge: ";
+        int pid; cin>>pid;
+        Patient* p = tail->next;
+        Patient* prev = tail;
+        bool found = false;
+        do{
+            if(p->PatientID == pid){ found = true; break; }
+            prev = p;
+            p = p->next;
+        } while(p != tail->next);
+        if(!found){
+            cout<<"Patient with ID "<<pid<<" not found.\n";
+            return;
+        }
+        // free doctor and room links can be handled here if needed
+        if(p == tail->next && p == tail){ // only one node
+            delete p; tail = nullptr;
+        } else {
+            prev->next = p->next;
+            if(p == tail) tail = prev; // update tail if needed
+            delete p;
+        }
+        cout<<"Patient with ID "<<pid<<" discharged successfully.\n";
     }
     void displayForward(){
         Patient* temp = tail->next;
@@ -458,25 +510,175 @@ class dcList{
         rooms->roomStatus = "Occupied";
         p->AssignedRoomID = rooms->roomId;
     }
+    void prioritizePatient(){
+        if(tail == nullptr) 
+        return;
+        cout<<"Enter ID of the intended patient to reprioritize: "; 
+        int id; cin>>id;
+        Patient* temp = tail->next;
+        do{
+            if(temp->PatientID != id){
+                temp = temp->next; 
+            }
+        }while(temp->PatientID != id && temp != tail->next);
+        if(temp == tail->next && temp->PatientID != id){
+            cout<<"Patient with this id not found"; return;
+        }
+        cout<<"Enter new Severity Level (1-5). 1 is the highest: "; cin>>temp->SeverityLevel;
+        
+        //Reorganize list based on severity level
+        Patient* current = tail->next;
+        do{
+            if(current->SeverityLevel > temp->SeverityLevel){
+                //Swap data
+                swap(current->PatientID, temp->PatientID);
+                swap(current->name, temp->name);
+                swap(current->Age, temp->Age);
+                swap(current->department, temp->department);
+                swap(current->SeverityLevel, temp->SeverityLevel);
+                swap(current->AssignedDoctorID, temp->AssignedDoctorID);
+                swap(current->AssignedRoomID, temp->AssignedRoomID);
+                swap(current->TreatmentStatus, temp->TreatmentStatus);
+            }
+            current = current->next;
+        }while(current != tail->next);
+    }
 };
 
-/*
-4. Treatment Cycle Simulation (Core Requirement)
-After every treatment cycle:
-1. Each patient currently in treatment moves one step toward completion.
-2. Patients who complete treatment are discharged and removed from the list.
-3. Rooms rotate cyclically (CLL rotation) to simulate new patients entering treatment.
-4. If a room becomes free, the next waiting patient (highest severity) is assigned
-automatically.
-5. The simulation continues until all patients are treated and discharged.
-
-You must implement:
-• simulateTreatmentCycle() – Performs one round of room rotation and treatment status
-updates.
-• runSimulation() – Repeats treatment cycles until all patients are discharged.
-*/
+void manageDoctors(){
+    dList doctors;
+    cout<<"press 1 to add a doctor\n"
+    <<"press 2 to delete a doctor\n"
+    <<"press 3 to update a doctor\n"
+    <<"press 4 to display doctors forward\n"
+    <<"press 5 to display doctors backward\n"
+    <<"press 6 to sort doctors by patient count\n"
+    <<"press 7 to search for a doctor\n";
+    int choice; cin>>choice;
+    switch(choice){
+        case 1:
+            doctors.addDoctor();
+            break;
+        case 2:
+            doctors.delDoctor();
+            break;
+        case 3:
+            doctors.updDoctor();
+            break;
+        case 4:
+            doctors.displayForward();
+            break;
+        case 5:
+            doctors.displayReverse();
+            break;
+        case 6:
+            doctors.sortDoctors();
+            break;
+        case 7:
+            doctors.searchDoctor();
+            break;
+        default:
+            cout<<"Invalid choice.\n";  
+    }
+}
+void manageRooms(){
+    cList rooms;
+    cout<<"press 1 to add a room\n"
+    <<"press 2 to delete a room\n"
+    <<"press 3 to display rooms\n"
+    <<"press 4 to assign room to patient\n"
+    <<"press 5 to rotate rooms\n"
+    <<"press 6 to get next available room\n";
+    int choice; cin>>choice;
+    switch(choice){
+        case 1:
+            rooms.addRoom();
+            break;
+        case 2:
+            rooms.delRoom();
+            break;
+        case 3:
+            rooms.displayRooms();
+            break;
+        case 4:
+            rooms.assignRoom();
+            break;
+        case 5:
+            rooms.rotateRoom();
+            break;
+        case 6:
+            rooms.getNextAvailableRoom();
+            break;
+        default:
+            cout<<"Invalid choice.\n";
+}
+}
+void managePatients(){
+    dcList patients;
+    dList doctors;
+    cList rooms;
+    cout<<"press 1 to add a patient\n"
+    <<"press 2 to update a patient\n"
+    <<"press 3 to display patients forward\n"
+    <<"press 4 to display patients backward\n"
+    <<"press 5 to assign doctor to patient\n"
+    <<"press 6 to assign room to patient\n"
+    <<"press 7 to prioritize patient\n"
+    <<"press 8 to discharge patient\n";
+    int choice; cin>>choice;
+    switch(choice){
+        case 1:
+            patients.addPatient();
+            break;
+        case 2:
+            patients.updatePatient();
+            break;
+        case 3:
+            patients.displayForward();
+            break;
+        case 4:
+            patients.displayBackward();
+            break;
+        case 5:
+            patients.assignDoctor(doctors);
+            break;
+        case 6:
+            patients.assignRoom(rooms.tail->next);
+            break;
+        case 7:
+            patients.prioritizePatient();
+            break;
+        case 8:
+            patients.dischargePatient();
+            break;
+        default:
+            cout<<"Invalid choice.\n";  
+    }
+}
 int main(){
-    
+    bool status = true;
+    while(status){
+        cout<<"Press 1 to manage Doctors\n"
+        <<"Press 2 to manage Rooms\n"
+        <<"Press 3 to manage Patients\n"
+        <<"Press 4 to exit\n";
+        int choice; cin>>choice;
+        switch(choice){
+            case 1:
+                manageDoctors();
+                break;
+            case 2:
+                manageRooms();
+                break;
+            case 3:
+                managePatients();
+                break;
+            case 4:
+                status = false;
+                break;
+            default:
+                cout<<"Invalid choice.\n";
+        }
+    }
     return 0;
-
 }
